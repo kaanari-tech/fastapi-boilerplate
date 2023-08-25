@@ -1,0 +1,35 @@
+[tool.poetry]
+name = "fastapi-boilerplate"
+version = "0.1.0"
+description = "A simple and complete fastapi api exemple"
+authors = ["Amos Pascal Amos <amos@kaanari.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.101.1"
+alembic = "^1.11.3"
+uvicorn = "^0.23.2"
+fastapi-debug-toolbar = "^0.5.0"
+pydantic = {extras = ["dotenv", "email"], version = "^2.3.0"}
+python-dotenv = "^1.0.0"
+
+[tool.poetry.group.dev.dependencies]
+locust = "^2.16.1"
+black = "^23.7.0"
+isort = "^5.12.0"
+pytest = "^7.4.0"
+mypy = "^1.5.1"
+types-PyYAML = "^6.0.12.11"
+types-toml = "^0.10.8.7"
+autoflake = "^2.2.0"
+pre-commit = "^3.3.3"
+codespell = "^2.2.5"
+bandit = "^1.7.5"
+flake8 = "^6.1.0"
+ruff = "^0.0.285"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
