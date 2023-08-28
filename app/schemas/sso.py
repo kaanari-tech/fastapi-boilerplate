@@ -6,8 +6,8 @@ from enum import Enum
 class SocialTypes(Enum):
     facebook = "facebook"
     google = "google"
-    apple = "apple"
     msal = "msal"
+    linkedin = "linkedin" 
 
 class OAuthRedirectLink(BaseModel):
     url: AnyHttpUrl

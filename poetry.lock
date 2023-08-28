@@ -972,6 +972,17 @@ http2 = ["h2 (>=3,<5)"]
 socks = ["socksio (==1.*)"]
 
 [[package]]
+name = "humps"
+version = "0.2.2"
+description = "camelCase converter"
+optional = false
+python-versions = "*"
+files = [
+    {file = "humps-0.2.2-py2.py3-none-any.whl", hash = "sha256:401de60fd73673b697086ba7c865966751c57b11cce57a37c9eabb3e75938417"},
+    {file = "humps-0.2.2.tar.gz", hash = "sha256:777f7a17f6b20aa9cc078d63b56ebd66532c6b2c88b370f1d596d5205410f67c"},
+]
+
+[[package]]
 name = "identify"
 version = "2.5.27"
 description = "File identification library for Python"
@@ -2376,4 +2387,4 @@ testing = ["coverage (>=5.0.3)", "zope.event", "zope.testing"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "81def5c98565bda95f1d5f7dffcf22c54774e99b8b104330f5d7da551140281e"
+content-hash = "0f9c90da1af42bea450091a540165403324eb2a8b1b39851637f9538705ca694"
