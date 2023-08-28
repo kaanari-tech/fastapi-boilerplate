@@ -3,11 +3,11 @@ from fastapi import status
 from httpx import AsyncClient
 
 from .base import OAuthBase
-from core.config import settings
-from models import OAuthCodeResponseSchema
-from models import OAuthRedirectLink
-from models import OAuthTokenResponseSchema
-from models import OAuthUserDataResponseSchema
+from app.core.config import settings
+from app.models import OAuthCodeResponseSchema
+from app.models import OAuthRedirectLink
+from app.models import OAuthTokenResponseSchema
+from app.models import OAuthUserDataResponseSchema
 
 
 class AppleOAuth(OAuthBase):
@@ -23,7 +23,8 @@ class AppleOAuth(OAuthBase):
     def generate_link_for_code(self) -> OAuthRedirectLink:
         """
         Generating a link to a redirect to the service to receive a confirmation code.
-        It is necessary for the user to further enter the service and receive a confirmation code from the service on Webhook.
+        It is necessary for the user to further enter the service
+        and receive a confirmation code from the service on Webhook.
         """
 
         url = (
@@ -64,7 +65,8 @@ class AppleOAuth(OAuthBase):
         """ "Getting information about a user through an access token."""
 
         response = await self.session.get(
-            url="https://appleid.apple.com/auth/authorize?client_id=[CLIENT_ID]&redirect_uri=[REDIRECT_URL]&response_type=code id_token&state=[STATE]&scope=[SCOPES]&response_mode=form_post",
+            url="https://appleid.apple.com/auth/authorize?client_id=[CLIENT_ID]&redirect_uri=[REDIRECT_URL]& \
+            response_type=codeid_token&state=[STATE]&scope=[SCOPES]&response_mode=form_post",
             params=dict(
                 fields=",".join(self.user_fields),
                 access_token=token.token,

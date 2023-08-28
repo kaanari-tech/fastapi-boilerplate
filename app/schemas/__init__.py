@@ -1,6 +1,9 @@
-from .sso import SocialTypes
+from .core import BaseSchema
+from .core import PagingMeta
+from .core import PagingQueryIn
+from .core import SortQueryIn
 from .sso import OAuthCodeResponseSchema
 from .sso import OAuthRedirectLink
 from .sso import OAuthTokenResponseSchema
 from .sso import OAuthUserDataResponseSchema
-from .core import BaseSchema, PagingQueryIn, PagingMeta, SortQueryIn
+from .sso import SocialTypes

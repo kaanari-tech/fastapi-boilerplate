@@ -1,7 +1,11 @@
-from sqlalchemy import Boolean, String, Text
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy import Boolean
+from sqlalchemy import String
+from sqlalchemy import Text
+from sqlalchemy.orm import Mapped
+from sqlalchemy.orm import mapped_column
 
-from app.models.base import Base, ModelBaseMixinWithoutDeletedAt
+from app.models.base import Base
+from app.models.base import ModelBaseMixinWithoutDeletedAt
 
 
 class User(ModelBaseMixinWithoutDeletedAt, Base):
@@ -11,9 +15,14 @@ class User(ModelBaseMixinWithoutDeletedAt, Base):
     lastname: Mapped[str] = mapped_column(String(64), index=True)
     phone: Mapped[str] = mapped_column(String(), index=True)
     email: Mapped[str] = mapped_column(
-        String(200), unique=True, index=True, nullable=False,
+        String(200),
+        unique=True,
+        index=True,
+        nullable=False,
     )
     email_verified: Mapped[bool] = mapped_column(
-        Boolean, nullable=False, server_default="0",
+        Boolean,
+        nullable=False,
+        server_default="0",
     )
     password: Mapped[str] = mapped_column(Text, nullable=False)

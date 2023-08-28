@@ -3,12 +3,12 @@ from fastapi import status
 from httpx import AsyncClient
 
 from .base import OAuthBase
-from core.config import settings
-from schemas import OAuthCodeResponseSchema
-from schemas import OAuthRedirectLink
-from schemas import OAuthTokenResponseSchema
-from schemas import OAuthUserDataResponseSchema
-from schemas import SocialTypes
+from app.core.config import settings
+from app.schemas import OAuthCodeResponseSchema
+from app.schemas import OAuthRedirectLink
+from app.schemas import OAuthTokenResponseSchema
+from app.schemas import OAuthUserDataResponseSchema
+from app.schemas import SocialTypes
 
 
 class LinkedinOAuth(OAuthBase):
@@ -36,7 +36,8 @@ class LinkedinOAuth(OAuthBase):
     def generate_link_for_code(self) -> OAuthRedirectLink:
         """
         Generating a link to a redirect to the service to receive a confirmation code.
-        It is necessary for the user to further enter the service and receive a confirmation code from the service on Webhook.
+        It is necessary for the user to further enter the service
+        and receive a confirmation code from the service on Webhook.
         """
 
         url = (
@@ -102,5 +103,6 @@ linkedin_oauth = LinkedinOAuth(
     session=AsyncClient(),
     client_id=settings.LINKEDIN_CLIENT_ID,
     secret_key=settings.LINKEDIN_SECRET_KEY,
-    webhook_redirect_uri=f"{settings.API_URL}{settings.API_VERSION_PATH}{settings.LINKEDIN_WEBHOOK_OAUTH_REDIRECT_URI}",
+    webhook_redirect_uri=f"{settings.API_URL}{settings.API_VERSION_PATH} \
+        {settings.LINKEDIN_WEBHOOK_OAUTH_REDIRECT_URI}",
 )

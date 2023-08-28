@@ -1,23 +1,39 @@
-from typing import Generic, TypeVar, Any
-from app.models.base import Base
-from sqlalchemy.orm.properties import ColumnProperty
-from sqlalchemy.inspection import inspect
-from enum import Enum
-from pydantic import BaseModel
-from sqlalchemy.sql import func, select
-from sqlalchemy.ext.asyncio import AsyncSession
-from app.schemas import PagingQueryIn, SortQueryIn, PagingMeta
-import math
-from fastapi.encoders import jsonable_encoder
 import datetime
+import math
+from enum import Enum
+from typing import Any
+from typing import Generic
+from typing import TypeVar
+
+from fastapi.encoders import jsonable_encoder
+from pydantic import BaseModel
+from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.inspection import inspect
+from sqlalchemy.orm.properties import ColumnProperty
+from sqlalchemy.sql import func
+from sqlalchemy.sql import select
+
+from app.models.base import Base
+from app.schemas import PagingMeta
+from app.schemas import PagingQueryIn
+from app.schemas import SortQueryIn
 
 ModelType = TypeVar("ModelType", bound=Base)
 CreateSchemaType = TypeVar("CreateSchemaType", bound=BaseModel)
 UpdateSchemaType = TypeVar("UpdateSchemaType", bound=BaseModel)
-ResponseSchemaType = TypeVar("ResponseSchemaType", bound=BaseModel) 
-ListResponseSchemaType = TypeVar("ListResponseSchemaType", bound=BaseModel)  
+ResponseSchemaType = TypeVar("ResponseSchemaType", bound=BaseModel)
+ListResponseSchemaType = TypeVar("ListResponseSchemaType", bound=BaseModel)
 
-class CRUDBase(Generic[ModelType, CreateSchemaType, UpdateSchemaType, ResponseSchemaType, ListResponseSchemaType]):
+
+class CRUDBase(
+    Generic[
+        ModelType,
+        CreateSchemaType,
+        UpdateSchemaType,
+        ResponseSchemaType,
+        ListResponseSchemaType,
+    ]
+):
     def __init__(
         self,
         model: type[ModelType],
@@ -166,7 +182,7 @@ class CRUDBase(Generic[ModelType, CreateSchemaType, UpdateSchemaType, ResponseSc
         db_obj_dict = jsonable_encoder(db_obj)
         update_dict = update_schema.model_dump(
             exclude_unset=True,
-        ) 
+        )
         # Unset columns are not updated when exclude_unset=True is enabled.
         for field in db_obj_dict:
             if field in update_dict:
@@ -180,7 +196,7 @@ class CRUDBase(Generic[ModelType, CreateSchemaType, UpdateSchemaType, ResponseSc
     async def delete(self, db: AsyncSession, db_obj: ModelType) -> ModelType:
         """Logical suppression (soft delete)."""
         if not hasattr(db_obj, "deleted_at"):
-            # Raise an exception 
+            # Raise an exception
             print("Raise an excepton")
         if db_obj.deleted_at:
             # Raise an exception
@@ -193,6 +209,6 @@ class CRUDBase(Generic[ModelType, CreateSchemaType, UpdateSchemaType, ResponseSc
         return db_obj
 
     async def real_delete(self, db: AsyncSession, db_obj: ModelType) -> None:
-        """ Effective suppression """
+        """Effective suppression"""
         await db.delete(db_obj)
         await db.flush()

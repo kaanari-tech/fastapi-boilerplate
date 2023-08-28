@@ -1,5 +1,6 @@
 import os
-from logging import Logger, getLogger
+from logging import getLogger
+from logging import Logger
 from logging.config import dictConfig
 
 import yaml

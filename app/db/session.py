@@ -1,8 +1,12 @@
-from collections.abc import AsyncGenerator, Generator
+from collections.abc import AsyncGenerator
+from collections.abc import Generator
 
-from sqlalchemy import MetaData, create_engine
-from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
-from sqlalchemy.orm import Session, sessionmaker
+from sqlalchemy import create_engine
+from sqlalchemy import MetaData
+from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.ext.asyncio import create_async_engine
+from sqlalchemy.orm import Session
+from sqlalchemy.orm import sessionmaker
 from sqlalchemy.sql import text
 
 from app.core.config import settings
@@ -31,7 +35,10 @@ try:
         future=True,
     )
     async_session_factory = sessionmaker(
-        autocommit=False, autoflush=False, bind=async_engine, class_=AsyncSession,
+        autocommit=False,
+        autoflush=False,
+        bind=async_engine,
+        class_=AsyncSession,
     )
 except Exception as e:
     logger.error(f"DB connection error. detail={e}")
@@ -39,11 +46,11 @@ except Exception as e:
 
 def get_db() -> Generator[Session, None, None]:
     """
-        Create a db session when accessed from endpoint, calling with Depend
-        If there are no errors, commit.
-        If there is an error, rollback and finally close in any case.
+    Create a database session when accessing from an endpoint, using Depend
+    If there are no errors, validate.
+    If there is an error, go back and close in all cases.
     """
-    
+
     db = None
     try:
         db = session_factory()
@@ -71,10 +78,11 @@ async def get_async_db() -> AsyncGenerator[AsyncSession, None]:
 def drop_all_tables() -> None:
     logger.info("start: drop_all_tables")
     """
-    Delete all tables, types, Roles, etc. and return to initial state (development environment only)
+    Delete all tables, types, Roles, etc.
+    and return to initial state (development environment only)
     """
     if settings.ENV != "dev":
-        # Run only in local environnement 
+        # Run only in local environnement
         logger.info("drop_all_table() should be run only in dev env.")
         return
 

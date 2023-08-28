@@ -1,13 +1,17 @@
-from typing import Optional
-from pydantic import AnyHttpUrl, BaseModel, EmailStr
 from enum import Enum
+from typing import Optional
+
+from pydantic import AnyHttpUrl
+from pydantic import BaseModel
+from pydantic import EmailStr
 
 
 class SocialTypes(Enum):
     facebook = "facebook"
     google = "google"
     msal = "msal"
-    linkedin = "linkedin" 
+    linkedin = "linkedin"
+
 
 class OAuthRedirectLink(BaseModel):
     url: AnyHttpUrl

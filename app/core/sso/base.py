@@ -2,10 +2,10 @@ from typing import List
 
 from httpx import AsyncClient
 
-from schemas import OAuthCodeResponseSchema
-from schemas import OAuthRedirectLink
-from schemas import OAuthTokenResponseSchema
-from schemas import OAuthUserDataResponseSchema
+from app.schemas import OAuthCodeResponseSchema
+from app.schemas import OAuthRedirectLink
+from app.schemas import OAuthTokenResponseSchema
+from app.schemas import OAuthUserDataResponseSchema
 
 
 class OAuthBase:
@@ -47,7 +47,8 @@ class OAuthBase:
     def generate_link_for_code(self) -> OAuthRedirectLink:
         """
         Generating a link to a redirect to the service to receive a confirmation code.
-        It is necessary for the user to further enter the service and receive a confirmation code from the service on Webhook.
+        It is necessary for the user to further enter the service and
+        receive a confirmation code from the service on Webhook.
         """
 
         raise NotImplementedError

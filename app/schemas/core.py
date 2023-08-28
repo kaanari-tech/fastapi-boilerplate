@@ -3,7 +3,8 @@ from typing import Any
 
 from fastapi import Query
 from humps import camel
-from pydantic import BaseModel, validator
+from pydantic import BaseModel
+from pydantic import validator
 from sqlalchemy import desc
 
 
@@ -30,9 +31,10 @@ class BaseSchema(BaseModel):
         Python uses SnakeCase, but Javascript often uses CamelCase,
         so conversion is necessary.
         """
-        
+
         alias_generator = to_camel
         allow_population_by_field_name = True
+
 
 class PagingMeta(BaseSchema):
     current_page: int
