@@ -1,6 +1,9 @@
+from typing import Any
+
 from fastapi import HTTPException
 from fastapi import status
 from httpx import AsyncClient
+from pydantic_core import Url
 
 from .base import OAuthBase
 from app.core.config import settings
@@ -40,7 +43,7 @@ class GoogleOAuth(OAuthBase):
         )
 
     def prepare_user_data(
-        self, external_id: str, user_data: dict
+        self, external_id: str, user_data: dict[Any, Any]
     ) -> OAuthUserDataResponseSchema:
         """Converting interface socials for the general data format of the system"""
 
@@ -69,7 +72,7 @@ class GoogleOAuth(OAuthBase):
             f"client_id={self.client_id}"
         )
 
-        return OAuthRedirectLink(url=url)
+        return OAuthRedirectLink(url=Url(url=url))
 
     async def get_token(
         self, code: OAuthCodeResponseSchema
@@ -109,7 +112,9 @@ class GoogleOAuth(OAuthBase):
 
         return self.prepare_user_data(user_data["sub"], user_data)
 
-    async def verify_and_process(self, code: str):
+    async def verify_and_process(
+        self, code: OAuthCodeResponseSchema
+    ) -> OAuthUserDataResponseSchema:
         token = await self.get_token(code=code)
         datas = await self.get_user_data(token=token)
         return datas

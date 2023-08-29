@@ -1,13 +1,14 @@
 from fastapi import HTTPException
 from fastapi import status
 from httpx import AsyncClient
+from pydantic_core import Url
 
 from .base import OAuthBase
 from app.core.config import settings
-from app.models import OAuthCodeResponseSchema
-from app.models import OAuthRedirectLink
-from app.models import OAuthTokenResponseSchema
-from app.models import OAuthUserDataResponseSchema
+from app.schemas import OAuthCodeResponseSchema
+from app.schemas import OAuthRedirectLink
+from app.schemas import OAuthTokenResponseSchema
+from app.schemas import OAuthUserDataResponseSchema
 
 
 class AppleOAuth(OAuthBase):
@@ -34,7 +35,7 @@ class AppleOAuth(OAuthBase):
             f"response_type={self.response_type}&"
             f"scope={self.scope_to_str()}&"
         )
-        return OAuthRedirectLink(url=url)
+        return OAuthRedirectLink(url=Url(url=url))
 
     async def get_token(
         self, code: OAuthCodeResponseSchema

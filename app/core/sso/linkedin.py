@@ -1,6 +1,9 @@
+from typing import Any
+
 from fastapi import HTTPException
 from fastapi import status
 from httpx import AsyncClient
+from pydantic_core import Url
 
 from .base import OAuthBase
 from app.core.config import settings
@@ -20,7 +23,7 @@ class LinkedinOAuth(OAuthBase):
     scope = ["openid", "email", "profile"]
 
     def prepare_user_data(
-        self, external_id: str, user_data: dict
+        self, external_id: str, user_data: dict[Any, Any]
     ) -> OAuthUserDataResponseSchema:
         """Converting interface socials for the general data format of the system"""
 
@@ -49,7 +52,7 @@ class LinkedinOAuth(OAuthBase):
             f"response_type={self.response_type}"
         )
 
-        return OAuthRedirectLink(url=url)
+        return OAuthRedirectLink(url=Url(url=url))
 
     async def get_token(
         self, code: OAuthCodeResponseSchema
@@ -92,7 +95,9 @@ class LinkedinOAuth(OAuthBase):
 
         return self.prepare_user_data(user_data["sub"], user_data)
 
-    async def verify_and_process(self, code: str):
+    async def verify_and_process(
+        self, code: OAuthCodeResponseSchema
+    ) -> OAuthUserDataResponseSchema:
         token = await self.get_token(code=code)
 
         datas = await self.get_user_data(token=token)

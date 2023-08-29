@@ -1,3 +1,4 @@
+from typing import Any
 from typing import List
 
 from httpx import AsyncClient
@@ -38,7 +39,7 @@ class OAuthBase:
         return f"{delimiter}".join(self.scope)
 
     def prepare_user_data(
-        self, external_id: str, user_data: dict
+        self, external_id: str, user_data: dict[Any, Any]
     ) -> OAuthUserDataResponseSchema:
         """Converting interface socials for the general data format of the system"""
 
