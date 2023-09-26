@@ -7,3 +7,9 @@ from .sso import OAuthRedirectLink
 from .sso import OAuthTokenResponseSchema
 from .sso import OAuthUserDataResponseSchema
 from .sso import SocialTypes
+from .user import UserBase
+from .user import UserCreate
+from .user import UserResponse
+from .user import UserSortQueryIn
+from .user import UsersPagedResponse
+from .user import UserUpdate
