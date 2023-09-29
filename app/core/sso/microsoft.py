@@ -105,7 +105,6 @@ class MicrosoftOAuth(OAuthBase):
         )
 
         user_data = response.json()
-        print(user_data)
         if response.status_code != status.HTTP_200_OK:
             raise HTTPException(
                 status_code=status.HTTP_401_UNAUTHORIZED,

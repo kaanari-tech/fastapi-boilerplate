@@ -20,6 +20,7 @@ class Settings(BaseSettings):
         "http://localhost:3000",
         "http://localhost:3333",
     ]
+    API_BASE_URL: str
     ROOT_DIR_PATH: str = str(Path(__file__).parent.parent.parent.absolute())
 
     DB_HOST: str
@@ -39,13 +40,13 @@ class Settings(BaseSettings):
             return (
                 "postgresql+asyncpg://"
                 f"{self.DB_USER_NAME}:{self.DB_PASSWORD}@"
-                f"{self.DB_HOST}/{self.DB_NAME}?charset=utf8mb4"
+                f"{self.DB_HOST}:{self.DB_PORT}/{self.DB_NAME}"
             )
         else:
             return (
                 "postgresql://"
                 f"{self.DB_USER_NAME}:{self.DB_PASSWORD}@"
-                f"{self.DB_HOST}/{self.DB_NAME}?charset=utf8mb4"
+                f"{self.DB_HOST}:{self.DB_PORT}/{self.DB_NAME}"
             )
 
 

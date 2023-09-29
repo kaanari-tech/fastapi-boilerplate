@@ -1,23 +1,14 @@
 from fastapi import FastAPI
-from fastapi_versionizer.versionizer import versionize
 
 from app.core.config import settings
+from app.endpoints.api import v1_router
 
 app = FastAPI(
-    title=f"[{settings.ENV}]{settings.TITLE}",
+    title=f"[{settings.ENV.upper()}] {settings.TITLE}",
     debug=settings.DEBUG or False,
+    openapi_url=f"{settings.API_BASE_URL}/openapi.json"
     # responses={
     # }
 )
 
-versions = versionize(
-    app=app,
-    prefix_format="/api/v{major}.{minor}",
-    version_format="{major}.{minor}",
-    default_version=(0, 1),
-    docs_url="/docs",
-    redoc_url="/redoc",
-    enable_latest=True,
-    latest_prefix="/latest",
-    sorted_routes=False,
-)
+app.include_router(v1_router, prefix="/api/v1")

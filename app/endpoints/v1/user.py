@@ -1,10 +1,10 @@
-from db import get_async_db
 from fastapi import APIRouter
 from fastapi import Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app import crud
 from app import schemas
+from app.db import get_async_db
 
 
 router = APIRouter()

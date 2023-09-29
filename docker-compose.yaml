@@ -1,0 +1,16 @@
+version: "3.3"
+
+services:
+  postgres-db:
+    image: postgres:alpine
+    container_name: postgres-db
+    restart: always
+    ports:
+      - '6002:5432'
+    environment:
+      - POSTGRES_PASSWORD=co2Control2022
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
