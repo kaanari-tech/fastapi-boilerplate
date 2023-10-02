@@ -25,15 +25,15 @@ class Base(DeclarativeBase):
 class ModelBaseMixin:
     id: Mapped[str] = mapped_column(String(32), primary_key=True, default=get_id)
     created_at: Mapped[datetime] = mapped_column(
-        DateTime,
+        DateTime(timezone=True),
         nullable=False,
         server_default=current_timestamp(),
     )
     updated_at: Mapped[datetime] = mapped_column(
-        DateTime,
+        DateTime(timezone=True),
         nullable=False,
         default=current_timestamp(),
-        onupdate=func.utc_timestamp(),
+        onupdate=func.now(),
     )
     deleted_at: Mapped[datetime] = mapped_column(DateTime)
 
@@ -41,15 +41,15 @@ class ModelBaseMixin:
 class ModelBaseMixinWithoutDeletedAt:
     id: Mapped[str] = mapped_column(String(32), primary_key=True, default=get_id)
     created_at: Mapped[datetime] = mapped_column(
-        DateTime,
+        DateTime(timezone=True),
         nullable=False,
         server_default=current_timestamp(),
     )
     updated_at: Mapped[datetime] = mapped_column(
-        DateTime,
+        DateTime(timezone=True),
         nullable=False,
         default=current_timestamp(),
-        onupdate=func.utc_timestamp(),
+        onupdate=func.now(),
     )
 
 

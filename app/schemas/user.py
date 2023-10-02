@@ -1,3 +1,4 @@
+from datetime import datetime
 from enum import Enum
 
 from fastapi import Query
@@ -31,6 +32,8 @@ class UserResponse(UserBase):
     id: str
     email: EmailStr
     email_verified: bool
+    created_at: datetime
+    updated_at: datetime
 
     class Config:
         from_attributes = True
