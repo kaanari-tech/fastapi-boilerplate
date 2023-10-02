@@ -43,3 +43,4 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poe.tasks]
 makemigrations = {"shell" = "alembic revision --autogenerate", help="Automatic creation of database migration files"}
+migrate = {"shell" = "alembic upgrade heads", help="Database migration"}
