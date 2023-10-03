@@ -8,7 +8,7 @@ FastAPI REST boilerplate for typical project
 
 - [Features](#features)
 - [Project structure](#project-structure)
-- [Environmnent variables](#nvironmnent-variables)
+- [Environmnent variables](#environmnent-variables)
 - [Quick run](#quick-run)
 - [Comfortable development](#comfortable-development)
 - [Links](#links)
@@ -29,6 +29,7 @@ FastAPI REST boilerplate for typical project
 - [ ] Sign in and sign up via email.
 - [ ] Mailing
 - [ ] Monitoring
+- [ ] Realtime notification using messaging queue and websockets
 - [ ] Admin and User roles using RBAC ([Casbin](https://casbin.org/fr/docs/rbac)).
 - [ ] I18N
 - [ ] File uploads
