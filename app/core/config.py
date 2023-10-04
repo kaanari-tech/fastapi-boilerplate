@@ -23,13 +23,31 @@ class Settings(BaseSettings):
     API_BASE_URL: str
     ROOT_DIR_PATH: str = str(Path(__file__).parent.parent.parent.absolute())
 
+    ACCESS_TOKEN_EXPIRE_MINUTES: int
+    PUBLIC_KEY_PATH: str
+    PRIVATE_KEY_PATH: str
+
+    def load_key_file(self, key_file_path: str) -> str:
+        try:
+            with open(key_file_path, "r") as key_file:
+                return key_file.read()
+        except FileNotFoundError:
+            raise ValueError(f"Key file not found at {key_file_path}")
+
+    @property
+    def PRIVATE_KEY_CONTENT(self) -> str:
+        return self.load_key_file(self.PRIVATE_KEY_PATH)
+
+    @property
+    def PUBLIC_KEY_CONTENT(self) -> str:
+        return self.load_key_file(self.PUBLIC_KEY_PATH)
+
     DB_HOST: str
     DB_PORT: str
     DB_NAME: str
     DB_USER_NAME: str
     DB_PASSWORD: str
 
-    ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
     REFRESH_TOKEN_EXPIRE_MINUTES: int = 43800  # 1 month
 
     SECRET_KEY: str

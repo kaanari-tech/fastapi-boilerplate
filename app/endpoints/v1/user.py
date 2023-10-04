@@ -6,6 +6,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app import crud
 from app import schemas
+from app.core.security import get_password_hash
 from app.db import get_async_db
 
 
@@ -51,6 +52,7 @@ async def create_user(
             status_code=status.HTTP_409_CONFLICT,
             detail=f"User with email {user_in.email} alrheady exist",
         )
+    user_in.password = get_password_hash(user_in.password)
     user = await crud.user.create(db=db, create_schema=user_in)
     return user
 

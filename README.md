@@ -24,18 +24,19 @@ FastAPI REST boilerplate for typical project
 - [x] Precommit ([Pre-commit](https://pre-commit.com/))
 - [x] Database migration ([Alembic](https://alembic.sqlalchemy.org))
 - [x] Swagger.
-- [x] Social sign in (apple, facebook, google, linkdin, microsoft)
+- [x] Social sign in (apple, facebook, google, linkedin, microsoft)
 - [ ] Seeding.
 - [ ] Sign in and sign up via email.
 - [ ] Mailing
 - [ ] Monitoring
 - [ ] Realtime notification using messaging queue and websockets
+- [ ] Elasticseach - logstash
 - [ ] Admin and User roles using RBAC ([Casbin](https://casbin.org/fr/docs/rbac)).
 - [ ] I18N
 - [ ] File uploads
 - [ ] E2E and units tests.
 - [ ] Docker.
-- [ ] CI (Github Actions).
+- [ ] CI (Gitlab).
 
 ## Project Structure
 
@@ -76,6 +77,11 @@ app.endpoints    # Restapi endpoints files
 ## Environmnent variables
 To correctly run the project, you will need some environment variables. Expose & import them in core/config.py
 
+befor starting you need to generate RSA key pairs, both public and private keys.
+You can use [this website](https://travistidwell.com) or any other method you prefer to generate these keys.
+Keep a note of the file paths where you save these keys on your project folder or local machine.
+
+
 - `ENV` : Running Environment
 - `API_BASE_URL`: The pathname of the api version url
 - `DB_HOST`: Postgres database host
@@ -84,6 +90,9 @@ To correctly run the project, you will need some environment variables. Expose &
 - `DB_USER_NAME`: Postgres user
 - `DB_PASSWORD`: Postgres password
 - `SECRET_KEY`: Postgres password
+- `ACCESS_TOKEN_EXPIRE_MINUTES`: Access token duration
+- `PRIVATE_KEY_PATH`: Specify the absolute file paths to the RSA private key you generated earlier
+- `PUBLIC_KEY_PATH`: Specify the absolute file paths to the RSA public key you generated earlier
 
 
 ## Quick run
