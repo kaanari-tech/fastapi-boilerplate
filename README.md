@@ -79,7 +79,7 @@ To correctly run the project, you will need some environment variables. Expose &
 
 befor starting you need to generate RSA key pairs, both public and private keys.
 You can use [this website](https://travistidwell.com) or any other method you prefer to generate these keys.
-Keep a note of the file paths where you save these keys on your project folder or local machine.
+Keep a note of the file paths where you save these keys on your project folder (like `private_key.pem` and `public_key.pem`) or local machine.
 
 
 - `ENV` : Running Environment
@@ -91,8 +91,8 @@ Keep a note of the file paths where you save these keys on your project folder o
 - `DB_PASSWORD`: Postgres password
 - `SECRET_KEY`: Postgres password
 - `ACCESS_TOKEN_EXPIRE_MINUTES`: Access token duration
-- `PRIVATE_KEY_PATH`: Specify the absolute file paths to the RSA private key you generated earlier
-- `PUBLIC_KEY_PATH`: Specify the absolute file paths to the RSA public key you generated earlier
+- `PRIVATE_KEY_PATH`: Specify the absolute file paths to the RSA private key you generated earlier (`private_key.pem` if you saved it in your project root folder)
+- `PUBLIC_KEY_PATH`: Specify the absolute file paths to the RSA public key you generated earlier (`public_key.pem` if you saved it in your project root folder)
 
 
 ## Quick run
