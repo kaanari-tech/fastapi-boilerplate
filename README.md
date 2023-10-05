@@ -26,15 +26,15 @@ FastAPI REST boilerplate for typical project
 - [x] Swagger.
 - [x] Sign in and sign up via email.
 - [x] Social sign in (apple, facebook, google, linkedin, microsoft)
-- [x] Seeding.
+- [x] Seeding [sqlalchemyseed](https://sqlalchemyseed.readthedocs.io/en/stable/).
 - [ ] Mailing
-- [ ] Monitoring
 - [ ] Realtime notification using messaging queue and websockets
-- [ ] Elasticseach - logstash
+- [ ] File uploads
 - [ ] Admin and User roles using RBAC ([Casbin](https://casbin.org/fr/docs/rbac)).
 - [ ] I18N
-- [ ] File uploads
+- [ ] Elasticseach - logstash
 - [ ] E2E and units tests.
+- [ ] Monitoring
 - [ ] Docker.
 - [ ] CI (Gitlab).
 
@@ -132,6 +132,8 @@ poetry run uvicorn app.main:app --port 8001 --host 0.0.0.0 --reload
 ## Links
 
 - Swagger: <http://localhost:8001/docs>
+- Redoc: <http://localhost:8001/redoc>
+- Openapi json: <http://localhost:8001/api/v1/openapi.json>
 - Adminer (client for DB): <http://localhost:8080>
 
 ## Database utils
