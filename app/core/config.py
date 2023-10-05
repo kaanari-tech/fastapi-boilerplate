@@ -1,6 +1,7 @@
 import os
 from functools import lru_cache
 from pathlib import Path
+from typing import Optional
 
 from pydantic_settings import BaseSettings
 from pydantic_settings import SettingsConfigDict
@@ -26,6 +27,13 @@ class Settings(BaseSettings):
     ACCESS_TOKEN_EXPIRE_MINUTES: int
     PUBLIC_KEY_PATH: str
     PRIVATE_KEY_PATH: str
+
+    SMTP_TLS: bool = True
+    SMTP_PORT: Optional[int] = None
+    SMTP_HOST: Optional[str] = None
+    SMTP_USER: Optional[str] = None
+    SMTP_PASSWORD: Optional[str] = None
+    EMAIL_TEMPLATES_DIR: str = os.getcwd() + "/app/templates"
 
     def load_key_file(self, key_file_path: str) -> str:
         try:

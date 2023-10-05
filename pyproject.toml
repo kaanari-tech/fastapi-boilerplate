@@ -27,6 +27,7 @@ passlib = "^1.7.4"
 python-multipart = "^0.0.6"
 sqlalchemyseed = "^2.0.0"
 fire = "^0.5.0"
+emails = "^0.6"
 
 [tool.poetry.group.dev.dependencies]
 locust = "^2.16.1"

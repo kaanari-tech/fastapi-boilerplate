@@ -13,9 +13,9 @@ FastAPI REST boilerplate for typical project
 - [Comfortable development](#comfortable-development)
 - [Links](#links)
 - [Database utils](#database-utils)
-- [Tests](#tests)
+<!-- - [Tests](#tests)
 - [Tests in Docker](#tests-in-docker)
-- [Test benchmarking](#test-benchmarking)
+- [Test benchmarking](#test-benchmarking) -->
 
 ## Features
 
@@ -24,19 +24,20 @@ FastAPI REST boilerplate for typical project
 - [x] Database ([Sqlalchemy](https://www.sqlalchemy.org)).
 - [x] Database migration ([Alembic](https://alembic.sqlalchemy.org))
 - [x] Swagger.
+- [x] Redoc.
 - [x] Sign in and sign up via email.
 - [x] Social sign in (apple, facebook, google, linkedin, microsoft)
-- [x] Seeding [sqlalchemyseed](https://sqlalchemyseed.readthedocs.io/en/stable/).
-- [ ] Mailing
+- [x] Seeding ([sqlalchemyseed](https://sqlalchemyseed.readthedocs.io/en/stable/)).
+- [x] Mailing
 - [ ] Realtime notification using messaging queue and websockets
 - [ ] File uploads
 - [ ] Admin and User roles using RBAC ([Casbin](https://casbin.org/fr/docs/rbac)).
 - [ ] I18N
 - [ ] Elasticseach - logstash
 - [ ] E2E and units tests.
-- [ ] Monitoring
+- [ ] Monitoring using grafana and prometheus ([Grafana](https://grafana.com/))
 - [ ] Docker.
-- [ ] CI (Gitlab).
+- [ ] CI ([Gitlab](https://docs.gitlab.com/ee/ci/)).
 
 ## Project Structure
 
@@ -93,7 +94,11 @@ Keep a note of the file paths where you save these keys on your project folder (
 - `ACCESS_TOKEN_EXPIRE_MINUTES`: Access token duration
 - `PRIVATE_KEY_PATH`: Specify the absolute file paths to the RSA private key you generated earlier (`private_key.pem` if you saved it in your project root folder)
 - `PUBLIC_KEY_PATH`: Specify the absolute file paths to the RSA public key you generated earlier (`public_key.pem` if you saved it in your project root folder)
-
+- `SMTP_TLS`: Indicates whether to use TLS (true or false) for SMTP email communication.
+- `SMTP_PORT`: The port number for SMTP email communication.
+- `SMTP_HOST`: The hostname or IP address of the SMTP server for sending emails.
+- `SMTP_USER`: The username for authenticating with the SMTP server.
+- `SMTP_PASSWORD`: The password for authenticating with the SMTP server.
 
 ## Quick run
 
