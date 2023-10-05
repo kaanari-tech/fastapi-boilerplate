@@ -1,0 +1,29 @@
+{
+    "model": "app.models.User",
+    "data": [
+        {
+            "firstname": "John",
+            "lastname": "March",
+            "phone": "+2204000400829",
+            "email": "johnmarch@gmail.com",
+            "email_verified": false,
+            "password": "$pbkdf2-sha256$29000$6t0757zXmrM2xpgzhrBWSg$8sW6DiXE8YsW0P2FT2V93kCUIOUNveStv6SHCnzg/YE"
+        },
+        {
+            "firstname": "Juan",
+            "lastname": "Dela Cruz",
+            "phone": "+104000400829",
+            "email": "juandelacruiz@gmail.com",
+            "email_verified": false,
+            "password": "$pbkdf2-sha256$29000$6t0757zXmrM2xpgzhrBWSg$8sW6DiXE8YsW0P2FT2V93kCUIOUNveStv6SHCnzg/YE"
+        },
+        {
+            "firstname": "Alfred",
+            "lastname": "Boga",
+            "phone": "+334000400829",
+            "email": "alfredboga@gmail.com",
+            "email_verified": false,
+            "password": "$pbkdf2-sha256$29000$6t0757zXmrM2xpgzhrBWSg$8sW6DiXE8YsW0P2FT2V93kCUIOUNveStv6SHCnzg/YE"
+        }
+    ]
+}

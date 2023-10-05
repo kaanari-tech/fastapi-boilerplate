@@ -12,10 +12,7 @@ from sqlalchemy.orm import mapped_column
 from sqlalchemy.orm import Session
 from sqlalchemy.sql.functions import current_timestamp
 
-from app.core.logger import get_logger
 from app.core.utils import get_id
-
-logger = get_logger(__name__)
 
 
 class Base(DeclarativeBase):

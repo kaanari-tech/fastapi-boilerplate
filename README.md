@@ -19,14 +19,14 @@ FastAPI REST boilerplate for typical project
 
 ## Features
 
-- [x] Database ([Sqlalchemy](https://www.sqlalchemy.org)).
-- [x] Config Service ([Pydantic](https://docs.pydantic.dev/latest/concepts/pydantic_settings/)).
 - [x] Precommit ([Pre-commit](https://pre-commit.com/))
+- [x] Config Service ([Pydantic](https://docs.pydantic.dev/latest/concepts/pydantic_settings/)).
+- [x] Database ([Sqlalchemy](https://www.sqlalchemy.org)).
 - [x] Database migration ([Alembic](https://alembic.sqlalchemy.org))
 - [x] Swagger.
+- [x] Sign in and sign up via email.
 - [x] Social sign in (apple, facebook, google, linkedin, microsoft)
-- [ ] Seeding.
-- [ ] Sign in and sign up via email.
+- [x] Seeding.
 - [ ] Mailing
 - [ ] Monitoring
 - [ ] Realtime notification using messaging queue and websockets
@@ -157,5 +157,5 @@ poe dwngrade
 Drop all tables in database
 
 ```bash
-poe drop-all-tables
+poe drop-tables
 ```

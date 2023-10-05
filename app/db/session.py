@@ -7,13 +7,8 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.ext.asyncio import create_async_engine
 from sqlalchemy.orm import Session
 from sqlalchemy.orm import sessionmaker
-from sqlalchemy.sql import text
 
 from app.core.config import settings
-from app.core.logger import get_logger
-
-logger = get_logger(__name__)
-
 
 try:
     engine = create_engine(
@@ -24,7 +19,7 @@ try:
     )
     session_factory = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 except Exception as e:
-    logger.error(f"DB connection error. detail={e}")
+    print(f"DB connection error. detail={e}")
 
 
 try:
@@ -41,7 +36,7 @@ try:
         class_=AsyncSession,
     )
 except Exception as e:
-    logger.error(f"DB connection error. detail={e}")
+    print(f"DB connection error. detail={e}")
 
 
 def get_db() -> Generator[Session, None, None]:
@@ -76,27 +71,23 @@ async def get_async_db() -> AsyncGenerator[AsyncSession, None]:
 
 
 def drop_all_tables() -> None:
-    logger.info("start: drop_all_tables")
+    print("start: drop_all_tables")
     """
     Delete all tables, types, Roles, etc.
     and return to initial state (development environment only)
     """
     if settings.ENV != "dev":
         # Run only in local environnement
-        logger.info("drop_all_table() should be run only in dev env.")
+        print("drop_all_table() should be run only in dev env.")
         return
 
     metadata = MetaData()
     metadata.reflect(bind=engine)
 
-    with engine.connect() as conn:
-        # Disable control of foreign key
-        conn.execute(text("SET FOREIGN_KEY_CHECKS = 0"))
+    for table_key in metadata.tables:
+        table = metadata.tables.get(table_key)
+        if table is not None:
+            print(f"Deleting {table_key} table")
+            metadata.drop_all(engine, [table], checkfirst=True)
 
-        # Delete all table
-        for table in metadata.tables:
-            conn.execute(text(f"DROP TABLE {table} CASCADE"))
-
-        # Enable control of foreign key
-        conn.execute(text("SET FOREIGN_KEY_CHECKS = 1"))
-        logger.info("end: drop_all_tables")
+    print("end: drop_all_tables")

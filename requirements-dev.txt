@@ -368,6 +368,8 @@ fastapi==0.103.2 ; python_version >= "3.11" and python_version < "4.0" \
 filelock==3.12.4 ; python_version >= "3.11" and python_version < "4.0" \
     --hash=sha256:08c21d87ded6e2b9da6728c3dff51baf1dcecf973b768ef35bcbc3447edb9ad4 \
     --hash=sha256:2e6f249f1f3654291606e046b09f1fd5eac39b360664c27f5aad072012f8bcbd
+fire==0.5.0 ; python_version >= "3.11" and python_version < "4.0" \
+    --hash=sha256:a6b0d49e98c8963910021f92bba66f65ab440da2982b78eb1bbf95a0a34aacc6
 flake8==6.1.0 ; python_version >= "3.11" and python_version < "4.0" \
     --hash=sha256:d5b3857f07c030bdb5bf41c7f53799571d75c4491748a3adcd47de929e34cd23 \
     --hash=sha256:ffdfce58ea94c6580c77888a86506937f9a1a227dfcd15f245d694ae20a6b6e5
@@ -1393,6 +1395,9 @@ sqlalchemy[mypy]==2.0.21 ; python_version >= "3.11" and python_version < "4.0" \
     --hash=sha256:f9fefd6298433b6e9188252f3bff53b9ff0443c8fde27298b8a2b19f6617eeb9 \
     --hash=sha256:fb87f763b5d04a82ae84ccff25554ffd903baafba6698e18ebaf32561f2fe4aa \
     --hash=sha256:fc6b15465fabccc94bf7e38777d665b6a4f95efd1725049d6184b3a39fd54880
+sqlalchemyseed==2.0.0 ; python_version >= "3.11" and python_version < "4.0" \
+    --hash=sha256:3482c878480fe1bd2903ef9de07ab0ebdf2b92676b271161e4808b97880a7222 \
+    --hash=sha256:67cc2f43e02c1d187224e04eaf0be897160f8ab5138a901273b8d4cf93ef4068
 sqlparse==0.4.4 ; python_version >= "3.11" and python_version < "4.0" \
     --hash=sha256:5430a4fe2ac7d0f93e66f1efc6e1338a41884b7ddf2a350cedd20ccc4d9d28f3 \
     --hash=sha256:d446183e84b8349fa3061f0fe7f06ca94ba65b426946ffebe6e3e8295332420c
@@ -1402,6 +1407,9 @@ starlette==0.27.0 ; python_version >= "3.11" and python_version < "4.0" \
 stevedore==5.1.0 ; python_version >= "3.11" and python_version < "4.0" \
     --hash=sha256:8cc040628f3cea5d7128f2e76cf486b2251a4e543c7b938f58d9a377f6694a2d \
     --hash=sha256:a54534acf9b89bc7ed264807013b505bf07f74dbe4bcfa37d32bd063870b087c
+termcolor==2.3.0 ; python_version >= "3.11" and python_version < "4.0" \
+    --hash=sha256:3afb05607b89aed0ffe25202399ee0867ad4d3cb4180d98aaf8eefa6a5f7d475 \
+    --hash=sha256:b5b08f68937f138fe92f6c089b99f1e2da0ae56c52b78bf7075fd95420fd9a5a
 tomli==2.0.1 ; python_version >= "3.11" and python_version < "4.0" \
     --hash=sha256:939de3e7a6161af0c887ef91b7d41a53e7c5a1ca976325f429cb46ea9bc30ecc \
     --hash=sha256:de526c12914f0c550d15924c62d72abc48d6fe7364aa87328337a31007fe8a4f

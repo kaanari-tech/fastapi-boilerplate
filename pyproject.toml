@@ -25,6 +25,8 @@ pydantic-settings = "^2.0.3"
 pyjwt = {extras = ["crypto"], version = "^2.8.0"}
 passlib = "^1.7.4"
 python-multipart = "^0.0.6"
+sqlalchemyseed = "^2.0.0"
+fire = "^0.5.0"
 
 [tool.poetry.group.dev.dependencies]
 locust = "^2.16.1"
@@ -49,4 +51,5 @@ build-backend = "poetry.core.masonry.api"
 makemigrations = {"shell" = "alembic revision --autogenerate", help="Automatic creation of database migration files"}
 migrate = {"shell" = "alembic upgrade heads", help="Database migration"}
 dwngrade = {"shell" = "alembic downgrade -1", help="Downgrade the last migration"}
-drop-all-tables = {"cmd" = "python seeder/run.py drop_all_tables", help="Drop all tables"}
+drop-tables = {"cmd" = "python -m seeder.run drop-tables", help="Drop all tables"}
+seed = {"cmd" = "python -m seeder.run seed", help="Seed database"}
