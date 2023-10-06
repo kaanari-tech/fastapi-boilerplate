@@ -81,7 +81,7 @@ app.endpoints    # Restapi endpoints files
 To correctly run the project, you will need some environment variables. Expose & import them in core/config.py
 
 befor starting you need to generate RSA key pairs, both public and private keys.
-You can use [this website](https://travistidwell.com) or any other method you prefer to generate these keys.
+You can use [this website](https://travistidwell.com/jsencrypt/demo/) or any other method you prefer to generate these keys.
 Keep a note of the file paths where you save these keys on your project folder (like `private_key.pem` and `public_key.pem`) or local machine.
 
 
