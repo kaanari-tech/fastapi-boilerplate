@@ -63,6 +63,8 @@ app.endpoints    # Restapi endpoints files
 │   ├── endpoints
 │   │   ├── api.py
 │   │   └── v1
+│   │   └── v2
+│   │   └── ...
 │   ├── main.py
 │   ├── models
 │   ├── schemas
