@@ -18,7 +18,7 @@ from app.db import get_async_db
 from app.models import User
 
 
-ALGORITHM = "RS256"
+ALGORITHM = "RS384"
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl=f"{settings.API_BASE_URL}/auth/login")
 
 
