@@ -29,7 +29,7 @@ FastAPI REST boilerplate for typical project
 - [x] Social sign in (apple, facebook, google, linkedin, microsoft)
 - [x] Seeding ([sqlalchemyseed](https://sqlalchemyseed.readthedocs.io/en/stable/)).
 - [x] Mailing
-- [ ] Realtime notification using messaging queue and websockets
+- [ ] Realtime notification using [messaging queue](https://www.rabbitmq.com/) and [python-socketio](https://python-socketio.readthedocs.io/en/latest/server.html)
 - [ ] File uploads
 - [ ] Admin and User roles using RBAC ([Casbin](https://casbin.org/fr/docs/rbac)).
 - [ ] I18N
