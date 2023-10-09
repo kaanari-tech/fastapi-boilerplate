@@ -21,6 +21,7 @@ class Settings(BaseSettings):
         "http://localhost:3000",
         "http://localhost:3333",
     ]
+    API_URL: str
     API_BASE_URL: str
     ROOT_DIR_PATH: str = str(Path(__file__).parent.parent.parent.absolute())
 
@@ -56,6 +57,11 @@ class Settings(BaseSettings):
     DB_USER_NAME: str
     DB_PASSWORD: str
 
+    RABBIT_MQ_HOST: str
+    RABBIT_MQ_PORT: int
+    RABBIT_MQ_PASSWORD: str
+    RABBIT_MQ_USER: str
+
     REFRESH_TOKEN_EXPIRE_MINUTES: int = 43800  # 1 month
 
     SECRET_KEY: str
@@ -74,6 +80,26 @@ class Settings(BaseSettings):
                 f"{self.DB_USER_NAME}:{self.DB_PASSWORD}@"
                 f"{self.DB_HOST}:{self.DB_PORT}/{self.DB_NAME}"
             )
+
+    APPLE_CLIENT_ID: str
+    APPLE_SECRET_KEY: str
+    APPLE_WEBHOOK_OAUTH_REDIRECT_URI: str
+
+    FACEBOOK_CLIENT_ID: str
+    FACEBOOK_SECRET_KEY: str
+    FACEBOOK_WEBHOOK_OAUTH_REDIRECT_URI: str
+
+    GOOGLE_CLIENT_ID: str
+    GOOGLE_SECRET_KEY: str
+    GOOGLE_WEBHOOK_OAUTH_REDIRECT_URI: str
+
+    LINKEDIN_CLIENT_ID: str
+    LINKEDIN_SECRET_KEY: str
+    LINKEDIN_WEBHOOK_OAUTH_REDIRECT_URI: str
+
+    MSAL_CLIENT_ID: str
+    MSAL_CLIENT_SECRET: str
+    MSAL_WEBHOOK_OAUTH_REDIRECT_URI: str
 
 
 @lru_cache

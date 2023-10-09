@@ -14,3 +14,15 @@ user_sync: CRUDSyncBase[
     response_schema_class=schemas.UserResponse,
     list_response_class=schemas.UsersPagedResponse,
 )
+
+notification_sync: CRUDSyncBase[
+    models.Notification,
+    schemas.NotificationCreate,
+    schemas.NotificationUpdate,
+    schemas.NotificationResponse,
+    schemas.NotificationsPagedResponse,
+] = CRUDSyncBase(
+    model=models.Notification,
+    response_schema_class=schemas.NotificationResponse,
+    list_response_class=schemas.NotificationsPagedResponse,
+)

@@ -1,14 +1,13 @@
-from datetime import datetime
 from typing import Any
 
+from sqlalchemy import Column
 from sqlalchemy import DateTime
 from sqlalchemy import event
 from sqlalchemy import func
 from sqlalchemy import orm
 from sqlalchemy import String
+from sqlalchemy.ext.declarative import declared_attr
 from sqlalchemy.orm import DeclarativeBase
-from sqlalchemy.orm import Mapped
-from sqlalchemy.orm import mapped_column
 from sqlalchemy.orm import Session
 from sqlalchemy.sql.functions import current_timestamp
 
@@ -16,33 +15,39 @@ from app.core.utils import get_id
 
 
 class Base(DeclarativeBase):
+    @declared_attr
+    def __tablename__(cls):
+        return cls.__name__.lower()
+
+    # Generate __tablename__ automatically
+
     pass
 
 
 class ModelBaseMixin:
-    id: Mapped[str] = mapped_column(String(32), primary_key=True, default=get_id)
-    created_at: Mapped[datetime] = mapped_column(
+    id = Column(String(32), primary_key=True, default=get_id)
+    created_at = Column(
         DateTime(timezone=True),
         nullable=False,
         server_default=current_timestamp(),
     )
-    updated_at: Mapped[datetime] = mapped_column(
+    updated_at = Column(
         DateTime(timezone=True),
         nullable=False,
         default=current_timestamp(),
         onupdate=func.now(),
     )
-    deleted_at: Mapped[datetime] = mapped_column(DateTime)
+    deleted_at = Column(DateTime)
 
 
 class ModelBaseMixinWithoutDeletedAt:
-    id: Mapped[str] = mapped_column(String(32), primary_key=True, default=get_id)
-    created_at: Mapped[datetime] = mapped_column(
+    id = Column(String(32), primary_key=True, default=get_id)
+    created_at = Column(
         DateTime(timezone=True),
         nullable=False,
         server_default=current_timestamp(),
     )
-    updated_at: Mapped[datetime] = mapped_column(
+    updated_at = Column(
         DateTime(timezone=True),
         nullable=False,
         default=current_timestamp(),

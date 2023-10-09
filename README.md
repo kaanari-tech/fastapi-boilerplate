@@ -29,7 +29,7 @@ FastAPI REST boilerplate for typical project
 - [x] Social sign in (apple, facebook, google, linkedin, microsoft)
 - [x] Seeding ([sqlalchemyseed](https://sqlalchemyseed.readthedocs.io/en/stable/)).
 - [x] Mailing
-- [ ] Realtime notification using [messaging queue](https://www.rabbitmq.com/) and [python-socketio](https://python-socketio.readthedocs.io/en/latest/server.html)
+- [x] Realtime notification using [messaging queue](https://www.rabbitmq.com/) and [python-socketio](https://python-socketio.readthedocs.io/en/latest/server.html)
 - [ ] File uploads
 - [ ] Admin and User roles using RBAC ([Casbin](https://casbin.org/fr/docs/rbac)).
 - [ ] I18N
@@ -87,6 +87,7 @@ Keep a note of the file paths where you save these keys on your project folder (
 
 - `ENV` : Running Environment
 - `API_BASE_URL`: The pathname of the api version url
+- `API_URL`: api base url
 - `DB_HOST`: Postgres database host
 - `DB_PORT`: Postgres database port
 - `DB_NAME`: Postgres database name
@@ -101,6 +102,25 @@ Keep a note of the file paths where you save these keys on your project folder (
 - `SMTP_HOST`: The hostname or IP address of the SMTP server for sending emails.
 - `SMTP_USER`: The username for authenticating with the SMTP server.
 - `SMTP_PASSWORD`: The password for authenticating with the SMTP server.
+- `RABBIT_MQ_HOST`: RabbitMQ host (localhost in this case)
+- `RABBIT_MQ_PORT`: RabbitMQ port (5672 in this case)
+- `RABBIT_MQ_PASSWORD`: RabbitMQ password (password123 in this case)
+- `RABBIT_MQ_USER`: RabbitMQ user (root in this case)
+- `APPLE_CLIENT_ID`: Apple OAuth client ID
+- `APPLE_SECRET_KEY`: Apple OAuth secret key
+- `APPLE_WEBHOOK_OAUTH_REDIRECT_URI`: Redirect URI for Apple OAuth callbacks
+- `FACEBOOK_CLIENT_ID`: Facebook OAuth client ID
+- `FACEBOOK_SECRET_KEY`: Facebook OAuth secret key
+- `FACEBOOK_WEBHOOK_OAUTH_REDIRECT_URI`: Redirect URI for Facebook OAuth callbacks
+- `GOOGLE_CLIENT_ID`: Google OAuth client ID
+- `GOOGLE_SECRET_KEY`: Google OAuth secret key
+- `GOOGLE_WEBHOOK_OAUTH_REDIRECT_URI`: Redirect URI for Google OAuth callbacks
+- `LINKEDIN_CLIENT_ID`: LinkedIn OAuth client ID
+- `LINKEDIN_SECRET_KEY`: LinkedIn OAuth secret key
+- `LINKEDIN_WEBHOOK_OAUTH_REDIRECT_URI`: Redirect URI for LinkedIn OAuth callbacks
+- `MSAL_CLIENT_ID`: Microsoft MSAL client ID
+- `MSAL_CLIENT_SECRET`: Microsoft MSAL client secret
+- `MSAL_WEBHOOK_OAUTH_REDIRECT_URI`: Redirect URI for Microsoft MSAL OAuth callbacks
 
 ## Quick run
 

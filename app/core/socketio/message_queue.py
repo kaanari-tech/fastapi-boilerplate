@@ -8,19 +8,18 @@ import pika
 from asgiref.sync import async_to_sync
 from pika.exchange_type import ExchangeType
 
+from app.core.config import settings
 from app.core.socketio.websocket_manager import CONNECTION
 from app.core.socketio.websocket_manager import send_personal_notification
 
 
 class MessageQueue:
     def __init__(self) -> None:
-        self.host = "localhost"
-        self.port = 5672
+        self.host = settings.RABBIT_MQ_HOST
+        self.port = settings.RABBIT_MQ_PORT
         self.exchange_name = "notification"
         self.queue_name = "notification_queue"
         self.routing_key = "notfy-x"
-        # self.connection = None
-        # self.channel = None
 
         try:
             # Initializing the Message Queue
@@ -62,7 +61,7 @@ class MessageQueue:
             async def callback_func(
                 ch: Any, method: Any, properties: Any, body: Any
             ) -> None:
-                if self.wsok_manager.active_connections:
+                if len(CONNECTION) > 0:
                     message_status = await send_personal_notification(json.loads(body))
                     if message_status:
                         ch.basic_ack(delivery_tag=method.delivery_tag)

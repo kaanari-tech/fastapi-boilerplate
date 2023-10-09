@@ -102,6 +102,6 @@ facebook_oauth = FacebookOAuth(
     session=AsyncClient(),
     client_id=settings.FACEBOOK_CLIENT_ID,
     secret_key=settings.FACEBOOK_SECRET_KEY,
-    webhook_redirect_uri=f"{settings.API_URL}{settings.API_VERSION_PATH} \
+    webhook_redirect_uri=f"{settings.API_URL}{settings.API_BASE_URL} \
     {settings.FACEBOOK_WEBHOOK_OAUTH_REDIRECT_URI}",
 )
