@@ -1,0 +1,89 @@
+image:
+  name: docker/compose:1.29.1
+  entrypoint: [""]
+
+services:
+  - docker:dind
+
+stages:
+  - build
+  - release
+  - deploy
+
+variables:
+  DOCKER_HOST: tcp://docker:2375
+  DOCKER_DRIVER: overlay2
+  DOCKER_TLS_CERTDIR: ""
+
+# the way to re-use the same steps for every stage in the workflow in the configuration file
+before_script:
+  # export the environment variable for an address of where our Docker image gets stored
+  - export IMAGE=$CI_REGISTRY/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME
+  # Installs the open-ssh client for later login to our vps
+  # and Bash to execute the Bash script for setting up the environment variable.
+  - apk add --no-cache openssh-client bash
+  - echo "$CI_JOB_TOKEN" | docker login -u "$CI_REGISTRY_USER" --password-stdin $CI_REGISTRY
+  # - docker login -u $CI_REGISTRY_USER -p $CI_JOB_TOKEN $CI_REGISTRY
+  - chmod +x ./devops/scripts/setup_env.sh
+  - bash ./devops/scripts/setup_env.sh
+
+build:
+  stage: build
+  script:
+    - export API_IMAGE=$IMAGE:api
+    # Pull the image if it exists in the registry.
+    - docker pull $IMAGE:api || true
+    # Build the image based on the configuration we have in the docker-compose.ci.yml file
+    - docker-compose -f ./devops/docker-compose/docker-compose-ci.yml build
+    # After the image has been built, it pushes the latest build image back to the GitLab Docker image registry
+    - docker push $IMAGE:api
+  only:
+    - prod
+  # when: manual
+
+release:
+  stage: release
+  script:
+    - apk add --update nodejs git npm
+    - git config --global user.email "admin@kaanari.com"
+    - git config --global user.name "nicolas"
+    - git tag -d v0.1.1 || true
+    - git push --delete origin v0.1.1 || true
+    - mkdir -p ~/.ssh
+    - echo "$PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa
+    - cat ~/.ssh/id_rsa
+    - chmod 700 ~/.ssh/id_rsa
+    - eval "$(ssh-agent -s)"
+    - ssh-add ~/.ssh/id_rsa
+    - ssh-keyscan -H gitlab.organisation.com >> ~/.ssh/known_hosts
+    - git remote set-url origin git@gitlab.organisation.com:boilerplate/boilerplate.git
+    - npm install
+    - npm ci
+    - npm run release
+    - git remote show origin
+    - git push --follow-tags origin HEAD:main
+  only:
+    - deploy
+
+deploy:
+  stage: deploy
+  script:
+    - export API_IMAGE=$IMAGE:api
+    # Extract a private key that is going to be used for SSH to the droplet and add it to the GitLab CI/CD process.
+    - mkdir -p ~/.ssh
+    - echo "$PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa
+    # - cat ~/.ssh/id_rsa
+    - chmod 700 ~/.ssh/id_rsa
+    # Copy all of the required artifacts for the deployment to the droplet by SSH-ing to it.
+    - eval "$(ssh-agent -s)"
+    - ssh-add ~/.ssh/id_rsa
+    - ssh-keyscan -H "$VPS_IP_ADDRESS" >> ~/.ssh/known_hosts
+    - chmod +x ./devops/scripts/deploy.sh
+    # - chmod +x ./clean.sh
+    # - bash ./clean.sh
+    - scp -o StrictHostKeyChecking=no -r ./.env ./devops/docker-compose/docker-compose.yml $VPS_USER@$VPS_IP_ADDRESS:/app
+    # # Run the deployment script
+    - bash ./devops/scripts/deploy.sh
+  only:
+    - prod
+  # when: manual

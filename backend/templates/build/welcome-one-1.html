@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Email de Bienvenue</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+  <style type="text/css">
+    body {
+      font-family: "Inter", Arial, sans-serif;
+      width: 100%;
+      max-width: 640px;
+      margin: 0;
+      padding: 0;
+      color: #4f4d55;
+      background-color: #f4f4f4;
+    }
+
+    header img {
+      max-width: 130px;
+    }
+
+    main {
+      padding: 32px 24px;
+    }
+
+    main p {
+      font-size: 16px;
+      line-height: 24px;
+      margin-bottom: 16px;
+    }
+
+    main div {
+      margin-top: 32px;
+    }
+
+    footer {
+      width: 100%;
+      font-size: 14px;
+      line-height: 20px;
+    }
+
+    footer p span {
+      color: #fc5933;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    footer div.social {
+      margin-top: 48px;
+
+    }
+
+    .footer-image {
+      max-width: 90px;
+    }
+
+    .social-icons img {
+      width: 20px;
+      height: 20px;
+    }
+
+    .social-icons {
+      float: right;
+    }
+
+    .social-icons a {
+      margin-left: 16px;
+      text-decoration: none;
+    }
+
+    @media (max-width: 600px) {
+      main {
+        padding: 16px;
+      }
+
+      footer {
+        padding: 16px;
+      }
+
+      footer div {
+        flex-direction: column;
+        gap: 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <img src="http://res.cloudinary.com/dhkvaew6n/raw/upload/v1718814671/test/Logo_nsmysd.png"
+      alt="Logo de Boilerplate" />
+  </header>
+  <main>
+    <p>Bienvenue sur Boilerplate!</p>
+    <p>
+      Nous sommes ravis de vous compter parmi nous ! Vous êtes déjà sur la
+      bonne voie pour développer vos compétences et atteindre de nouveaux
+      sommets dans votre carrière.
+    </p>
+    <p>
+      Que ce soit pour évoluer dans votre entreprise, acquérir de nouvelles
+      compétences, ou simplement pour le plaisir d'apprendre, bienvenue dans
+      notre communauté ! Si vous avez besoin de quoi que ce soit, nous serons
+      là à chaque étape du processus.
+    </p>
+    <p>Merci,<br />L'équipe Boilerplate.</p>
+    <div>
+      <a href="{{ url }}" style="
+            color: #ffffff;
+            font-weight: 500;
+            size: 16px;
+            line-height: 24px;
+            background-color: #fc5933;
+            text-decoration: none;
+            width: 134px;
+            height: 44px;
+            padding: 10px 16px;
+            border: 1.5px;
+            border-radius: 99px;
+          ">Se connecter</a>
+    </div>
+  </main>
+  <footer>
+    <div>
+      <p>
+        Ce courriel a été envoyé à <span>{{ email }}</span>. Si vous préférez
+        ne pas recevoir ce type d'e-mail, vous pouvez vous
+        <span>désabonner</span> ou
+        <span>gérer vos préférences en matière d'e-mail</span>.
+      </p>
+      <p>&copy; Boilerplate co., 38 Rue Legendre, 75017 Paris, France</p>
+    </div>
+
+    <div class="social" style="width: 100%">
+      <div style="float: left">
+        <img src="http://res.cloudinary.com/dhkvaew6n/raw/upload/v1718814671/test/Logo_nsmysd.png"
+          alt="Logo de Boilerplate" class="footer-image" />
+      </div>
+      <div class="social-icons">
+        <a href="https://www.twitter.com/nomdelentreprise" target="_blank">
+          <img src="http://res.cloudinary.com/dhkvaew6n/raw/upload/v1718986108/test/twitter_xnqzgi.png" alt="X" />
+        </a>
+        <a href="https://www.facebook.com/nomdelentreprise" target="_blank">
+          <img src="http://res.cloudinary.com/dhkvaew6n/raw/upload/v1718986190/test/facebook_yafqw6.png"
+            alt="Facebook" />
+        </a>
+        <a href="https://www.instagram.com/nomdelentreprise" target="_blank">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" />
+        </a>
+        <a href="https://www.linkedin.com/company/nomdelentreprise" target="_blank">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn" />
+        </a>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>

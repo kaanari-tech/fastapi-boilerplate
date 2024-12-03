@@ -1,0 +1,15 @@
+{
+    "model": "backend.models.User",
+    "data": [
+        {
+            "firstname": "Kaanari",
+            "lastname": "Tech",
+            "fullname": "Kaanari Tech",
+            "phone": "",
+            "email": "admin@kaanari.com",
+            "email_verified": true,
+            "password": "$pbkdf2-sha256$29000$ubcWorT2njOmtLY25ty71w$Yo/aLAd5AxAolsTjDoOqtkvUvUWD6TErRR7.tCsMQ8g"
+
+        }
+    ]
+}

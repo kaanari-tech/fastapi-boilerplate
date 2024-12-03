@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Email de Bienvenue</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap&family=Manrope:wght@400;700;900&display=swap"
+    rel="stylesheet" />
+  <style type="text/css">
+    body {
+      font-family: 'Inter', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #4f4d55;
+      background-color: #f4f4f4;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 640px;
+      margin: 0 auto;
+      background-color: #ffffff;
+      padding: 32px;
+      text-align: left;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    header {
+      padding: 24px;
+    }
+
+    header img {
+      max-width: 130px;
+    }
+
+    main {
+      padding: 32px 24px;
+    }
+
+    main img {
+      width: 100%;
+    }
+
+    main section {
+      margin-top: 48px;
+      margin-bottom: 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 49px;
+    }
+
+    main h1 {
+      font-family: 'Manrope';
+      font-weight: 700;
+      size: 30px;
+      line-height: 38px;
+    }
+
+    main p {
+      font-size: 16px;
+      line-height: 24px;
+      /* margin-bottom: 16px; */
+    }
+
+    footer {
+      padding: 32px 24px;
+      font-size: 14px;
+      line-height: 20px;
+    }
+
+    footer p span {
+      color: #fc5933;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    footer div {
+      margin-top: 48px;
+      display: flex;
+      justify-content: space-between;
+      flex-direction: row;
+      align-items: center;
+    }
+
+    .footer-image {
+      max-width: 90px;
+    }
+
+    .social-icons {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .social-icons img {
+      width: 20px;
+      height: 20px;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 16px;
+      }
+
+      main {
+        padding: 16px;
+      }
+
+      footer {
+        padding: 16px;
+      }
+
+      footer div {
+        flex-direction: column;
+        gap: 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <img src="http://res.cloudinary.com/dhkvaew6n/raw/upload/v1718814671/test/Logo_nsmysd.png"
+        alt="Logo de Boilerplate" />
+    </header>
+    <main>
+      <div>
+        <img src="http://res.cloudinary.com/dhkvaew6n/raw/upload/v1718881710/test/Image_eotlhz.png"
+          alt="image illustrative" />
+      </div>
+      <section>
+        <div>
+          <h1>Bienvenue sur Boilerplate</h1>
+          <p>
+            Nous sommes ravis de vous accueillir sur Boilerplate et encore plus
+            enthousiastes à propos de tout ce que nous avons prévu pour vous.
+            Vous êtes déjà sur la bonne voie pour vous former et vous
+            perfectionner dans votre domaine.
+          </p>
+          <p>
+            Que vous soyez ici pour évoluer dans votre carrière, pour acquérir
+            de nouvelles compétences ou simplement pour le plaisir d'apprendre
+            - bienvenue ! Si vous avez besoin de quoi que ce soit, nous serons
+            là à chaque étape.
+          </p>
+        </div>
+        <div>
+          <p>
+            <a href="https://boilerplate.com/articles" style="color: #fc5933; font-weight: 500">Articles Boilerplate
+              &rarr;</a>
+          </p>
+          <p>
+            Mises à jour hebdomadaires d'articles et de contenus par nos
+            mentors Boilerplate.
+          </p>
+        </div>
+        <div>
+          <p>
+            <a href="https://boilerplate.com/articles" style="color: #fc5933; font-weight: 500">Suivez-nous sur Twitter
+              &rarr;</a>
+          </p>
+          <p>Restez informé des dernières annonces et nouvelle formation.</p>
+        </div>
+        <div>
+          <p>
+            Merci de vous être inscrit. Si vous avez des questions,
+            envoyez-nous un message à
+            <span>
+              <a href="https://boilerplate.com" style="color: #fc5933; font-weight: 500">@boilerplate.com</a> </span>ou
+            sur
+            <span>
+              <a href="https://twitter.com/boilerplate" style="color: #fc5933; font-weight: 500">Twitter</a>
+            </span>
+            Nous serions ravis d'avoir de vos nouvelles.
+          </p>
+          <p>L'équipe Boilerplate.</p>
+        </div>
+      </section>
+
+      <div>
+        <a href="https://boilerplate.com/auth/login" style="
+              color: #ffffff;
+              font-weight: 500;
+              size: 16px;
+              line-height: 24px;
+              background-color: #fc5933;
+              text-decoration: none;
+              width: 134px;
+              height: 44px;
+              padding: 10px 16px;
+              border: 1.5px;
+              border-radius: 99px;
+            ">Démarrer</a>
+      </div>
+    </main>
+    <footer>
+      <p>
+        Ce courriel a été envoyé à <span>@boilerplate.com</span>. Si vous préférez
+        ne pas recevoir ce type d'e-mail, vous pouvez vous
+        <span>désabonner</span> ou
+        <span>gérer vos préférences en matière d'e-mail</span>.
+      </p>
+      <p>&copy; Boilerplate co., 38 Rue Legendre, 75017 Paris, France</p>
+      <div>
+        <div>
+          <img src="http://res.cloudinary.com/dhkvaew6n/raw/upload/v1718814671/test/Logo_nsmysd.png"
+            alt="Logo de Boilerplate" class="footer-image" />
+        </div>
+        <div class="social-icons">
+          <a href="https://www.twitter.com/nomdelentreprise" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/X_logo_2023_original.svg" alt="X" />
+          </a>
+          <a href="https://www.facebook.com/nomdelentreprise" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg"
+              alt="Facebook" />
+          </a>
+          <a href="https://www.instagram.com/nomdelentreprise" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" />
+          </a>
+          <a href="https://www.linkedin.com/company/nomdelentreprise" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn" />
+          </a>
+        </div>
+      </div>
+    </footer>
+  </div>
+</body>
+
+</html>

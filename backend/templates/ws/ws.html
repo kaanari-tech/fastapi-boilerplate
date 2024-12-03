@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<header>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+</header>
+
+<body>
+  <div class="jumbotron text-center">
+    <h1>Real Time Notifications With Python And Redis</h1>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div id="log" class="col-lg-12"></div>
+    </div>
+  </div>
+
+</body>
+<script src="http://code.jquery.com/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+<script>
+  socket = io.connect('ws://127.0.0.1:8001/api/v1/ws/notify-x', {
+        query: { token: token }
+    });
+
+
+</script>
+
+
+
+<!-- <script type="text/javascript">
+
+  var connection
+  $(function () {
+    log = document.getElementById('log');
+
+    // if user is running mozilla then use it's built-in WebSocket
+    window.WebSocket = window.WebSocket || window.MozWebSocket;
+
+    function connect() {
+      let connection = new WebSocket('ws://127.0.0.1:8001/api/v1/ws/notify-x')
+
+      connection.onopen = function () {
+        connection.send(JSON.stringify({ "method": "subscribe", "channel": "orders" }))
+      };
+
+      connection.onerror = function (error) {
+        log.innerHTML = '<li class="them text-danger font-weight-bold">an error occurred when sending-receiving data</li>' + log.innerHTML;
+      }
+      connection.onmessage = function (message) {
+        console.log(JSON.parse(message.data))
+      }
+
+      connection.onclose = function (evnt) {
+        let recon = setInterval(function () {
+          connect()
+          clearInterval(recon)
+        }, 2000)
+      };
+    };
+    connect()
+  });
+
+</script> -->
+
+</html>

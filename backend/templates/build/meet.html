@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Invitation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+  <style type="text/css">
+    body {
+      font-family: 'Inter', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #4f4d55;
+      background-color: #f4f4f4;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 640px;
+      margin: 0 auto;
+      background-color: #ffffff;
+      padding: 32px;
+      text-align: left;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    header {
+      padding: 24px;
+    }
+
+    header img {
+      max-width: 130px;
+    }
+
+    main {
+      padding: 32px 24px;
+    }
+
+    main p {
+      font-size: 16px;
+      line-height: 24px;
+      margin-bottom: 16px;
+    }
+
+    main div {
+      margin-top: 32px;
+    }
+
+    footer {
+      padding: 32px 24px;
+      font-size: 14px;
+      line-height: 20px;
+    }
+
+    footer p span {
+      color: #fc5933;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    footer div {
+      margin-top: 48px;
+      display: flex;
+      justify-content: space-between;
+      flex-direction: row;
+      align-items: center;
+    }
+
+    .footer-image {
+      max-width: 90px;
+    }
+
+    .social-icons {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .social-icons img {
+      width: 20px;
+      height: 20px;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 16px;
+      }
+
+      main {
+        padding: 16px;
+      }
+
+      footer {
+        padding: 16px;
+      }
+
+      footer div {
+        flex-direction: column;
+        gap: 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <img src="http://res.cloudinary.com/dhkvaew6n/raw/upload/v1718814671/test/Logo_nsmysd.png"
+        alt="Logo de Boilerplate" />
+    </header>
+    <main>
+      <p>Bonjour Samuel,</p>
+      <p>
+        Paul vous a invité à rejoindre le meet de Mise à niveau du parcours.
+      </p>
+
+      <div>
+        <a href="https://boilerplate.com/auth/login" style="
+              color: #ffffff;
+              font-weight: 500;
+              size: 16px;
+              line-height: 24px;
+              background-color: #fc5933;
+              text-decoration: none;
+              width: 185px;
+              height: 44px;
+              padding: 10px 16px;
+              border: 1.5px;
+              border-radius: 99px;
+            ">Accepter l'invitation</a>
+      </div>
+    </main>
+    <footer>
+      <p>
+        Ce courriel a été envoyé à <span>@boilerplate.com</span>. Si vous préférez
+        ne pas recevoir ce type d'e-mail, vous pouvez vous
+        <span>désabonner</span> ou
+        <span>gérer vos préférences en matière d'e-mail</span>.
+      </p>
+      <p>&copy; Boilerplate co., 38 Rue Legendre, 75017 Paris, France</p>
+      <div>
+        <div>
+          <img src="http://res.cloudinary.com/dhkvaew6n/raw/upload/v1718814671/test/Logo_nsmysd.png"
+            alt="Logo de Boilerplate" class="footer-image" />
+        </div>
+        <div class="social-icons">
+          <a href="https://www.twitter.com/nomdelentreprise" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/X_logo_2023_original.svg" alt="X" />
+          </a>
+          <a href="https://www.facebook.com/nomdelentreprise" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg"
+              alt="Facebook" />
+          </a>
+          <a href="https://www.instagram.com/nomdelentreprise" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" />
+          </a>
+          <a href="https://www.linkedin.com/company/nomdelentreprise" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn" />
+          </a>
+        </div>
+      </div>
+    </footer>
+  </div>
+</body>
+
+</html>

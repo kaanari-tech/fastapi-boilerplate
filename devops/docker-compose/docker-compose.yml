@@ -1,0 +1,267 @@
+x-logging: &default-logging
+  driver: loki
+  options:
+    loki-url: 'http://localhost:3100/api/prom/push'
+    loki-pipeline-stages: |
+      - multiline:
+          firstline: '^\d{4}-\d{2}-\d{2} \d{1,2}:\d{2}:\d{2}'
+          max_wait_time: 3s
+      - regex:
+          expression: '^(?P<time>\d{4}-\d{2}-\d{2} \d{1,2}:\d{2}:\d{2},\d{3}) (?P<message>(?s:.*))$$'
+
+version: '3.3'
+networks:
+  boilerplate_network:
+    name: boilerplate_network
+    driver: bridge
+    # ipam:
+    #   driver: default
+    #   config:
+    #     - subnet: 172.10.10.0/24
+
+volumes:
+  boilerplate_postgres:
+    name: boilerplate_postgres
+  boilerplate_redis:
+    name: boilerplate_redis
+  # boilerplate_static:
+  #   name: boilerplate_static
+  # boilerplate_rabbitmq:
+  #   name: boilerplate_rabbitmq
+  boilerplate_minio:
+    name: boilerplate_minio
+  boilerplate_db_migrations:
+    name: boilerplate_db_migrations
+  boilerplate_logs:
+    name: boilerplate_logs
+  postgres_data_pgvector:
+
+
+services:
+  api_v2:
+    # image: ${API_IMAGE}
+    build:
+      context: ../../
+      dockerfile: backend/Dockerfile
+      # cache_from:
+      #   - ${API_IMAGE}
+    container_name: api_v2
+    restart: always
+    depends_on:
+      - boilerplateminio
+      - boilerplate_redis
+      - boilerplate_postgres
+    ports:
+      - "8000:8000"
+    volumes:
+      - boilerplate_db_migrations:/app/backend/alembic/versions
+      - boilerplate_logs:/app/backend/log
+    networks:
+      - boilerplate_network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.api.rule=Host(`api.myboilerplate.com`)"
+      - "traefik.http.routers.api.entrypoints=websecure"
+      - "traefik.http.routers.api.tls.certresolver=myresolver"
+      - "traefik.http.services.api.loadbalancer.server.port=8000"
+    # environment:
+    #   - ENVIRONMENT=${ENVIRONMENT}
+    #   - TITLE=${TITLE}
+    #   - CLIENT_ROOT_PATH=${CLIENT_ROOT_PATH}
+    #   - ADMIN_ROOT_PATH=${ADMIN_ROOT_PATH}
+    #   - CLIENT_URL=${CLIENT_URL}
+    #   - API_BASE_URL=${API_BASE_URL}
+    #   - API_URL=${API_URL}
+    #   - ACCESS_TOKEN_EXPIRE_MINUTES=${ACCESS_TOKEN_EXPIRE_MINUTES}
+    #   - POSTGRES_HOST=${POSTGRES_HOST}
+    #   - POSTGRES_PORT=${POSTGRES_PORT}
+    #   - POSTGRES_USER=${POSTGRES_USER}
+    #   - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    #   - REDIS_HOST=${REDIS_HOST}
+    #   - REDIS_PORT=${REDIS_PORT}
+    #   - REDIS_PASSWORD=${REDIS_PASSWORD}
+    #   - REDIS_DATABASE=${REDIS_DATABASE}
+    #   - TOKEN_SECRET_KEY=${TOKEN_SECRET_KEY}
+
+    #   - OPERA_LOG_ENCRYPT_SECRET_KEY=${OPERA_LOG_ENCRYPT_SECRET_KEY}
+    #   - OAUTH2_GITHUB_CLIENT_ID=${OAUTH2_GITHUB_CLIENT_ID}
+    #   - OAUTH2_GITHUB_CLIENT_SECRET=${OAUTH2_GITHUB_CLIENT_SECRET}
+    #   - OAUTH2_LINUX_DO_CLIENT_ID=${OAUTH2_LINUX_DO_CLIENT_ID}
+    #   - OAUTH2_LINUX_DO_CLIENT_SECRET=${OAUTH2_LINUX_DO_CLIENT_SECRET}
+    #   - CELERY_BROKER_REDIS_DATABASE=${CELERY_BROKER_REDIS_DATABASE}
+    #   - CELERY_BACKEND_REDIS_DATABASE=${CELERY_BACKEND_REDIS_DATABASE}
+    #   - RABBITMQ_HOST=${RABBITMQ_HOST}
+    #   - RABBITMQ_PORT=${RABBITMQ_PORT}
+    #   - RABBITMQ_USERNAME=${RABBITMQ_USERNAME}
+    #   - RABBITMQ_PASSWORD=${RABBITMQ_PASSWORD}
+    #   - MINIO_ENDPOINT=${MINIO_ENDPOINT}
+    #   - MINIO_PORT=${MINIO_PORT}
+    #   - MINIO_ACCESS_KEY=${MINIO_ACCESS_KEY}
+    #   - MINIO_SECRET_KEY=${MINIO_SECRET_KEY}
+    #   - MINIO_BUCKET_NAME=${MINIO_BUCKET_NAME}
+    #   - MINIO_CLOUD_URL=${MINIO_CLOUD_URL}
+
+    #   - SMTP_TLS=${SMTP_TLS}
+    #   - SMTP_PORT=${SMTP_PORT}
+    #   - SMTP_HOST=${SMTP_HOST}
+    #   - SMTP_USER=${SMTP_USER}
+    #   - EMAILS_FROM_EMAIL=${EMAILS_FROM_EMAIL}
+    #   - EMAILS_FROM_NAME=${EMAILS_FROM_NAME}
+    #   - SMTP_PASSWORD=${SMTP_PASSWORD}
+
+  boilerplate_loki:
+    image: grafana/loki:3.0.0
+    command: -config.file=/etc/loki/local-config.yaml
+    ports:
+      - "3100:3100"
+
+  boilerplate_postgres:
+    image: postgres:alpine
+    container_name: boilerplate_postgres
+    restart: always
+    ports:
+      - '6002:5432'
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_PASSWORD=Password123
+    volumes:
+      - boilerplate_postgres:/var/lib/postgresql/data
+    command:
+      - "postgres"
+      - "-c"
+      - "wal_level=logical"
+      - "-c"
+      - "max_replication_slots=30"
+    networks:
+      - boilerplate_network
+
+  # boilerplate_pgvector:
+  #   # postgres with the pgvector extension
+  #   image: ankane/pgvector
+  #   container_name: boilerplate_pgvector
+  #   environment:
+  #     - POSTGRES_DB=postgres
+  #     - POSTGRES_PASSWORD=Password123
+  #   ports:
+  #     - "6003:5432"
+  #   command:
+  #     - "postgres"
+  #     - "-c"
+  #     - "wal_level=logical"
+  #     - "-c"
+  #     - "max_replication_slots=30"
+  #   healthcheck:
+  #     test: [ "CMD-SHELL", "psql postgresql://postgres:Password123@localhost:6002/postgres --command 'SELECT 1;' || exit 1" ]
+  #     interval: 5s
+  #     retries: 60
+  #   volumes:
+  #     - postgres_data_pgvector:/var/lib/postgresql/data
+
+  boilerplateminio:
+    image: quay.io/minio/minio:RELEASE.2024-10-29T16-01-48Z
+    container_name: boilerplateminio
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      MINIO_ROOT_USER: "BoilerplateAdmin"
+      MINIO_ROOT_PASSWORD: "CreativeTech123"
+      # MINIO_DOMAIN: "myboilerplate.com"
+
+    volumes:
+      - boilerplate_minio:/data
+    command: server /data --console-address ":9001"
+
+    networks:
+      - boilerplate_network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.cloud.rule=Host(`cloud.myboilerplate.com`)"
+      - "traefik.http.routers.cloud.entrypoints=websecure"
+      - "traefik.http.routers.cloud.tls.certresolver=myresolver"
+      - "traefik.http.services.cloud.loadbalancer.server.port=9000"
+
+  boilerplate_redis:
+    image: redis:6.2.7
+    ports:
+      - "${DOCKER_REDIS_MAP_PORT:-6379}:6379"
+    container_name: boilerplate_redis
+    restart: always
+    environment:
+      - TZ=Africa/Abidjan
+    # command: ["redis-server", "--requirepass", "${REDIS_PASSWORD}"]
+
+    volumes:
+      - boilerplate_redis:/var/lib/redis
+    networks:
+      - boilerplate_network
+
+  # boilerplate_reverse_proxy:
+  #   image: traefik:v3.1
+  #   container_name: traefik
+  #   command:
+  #     - --api.dashboard=true
+  #     - --providers.docker
+  #     - --entrypoints.web.address=:80
+  #     - --entrypoints.websecure.address=:443
+  #     - --entrypoints.metrics.address=:8082
+  #     - --certificatesresolvers.myresolver.acme.tlschallenge=true
+  #     - --certificatesresolvers.myresolver.acme.email=aziz@kaanari.com
+  #     - --certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json
+  #   ports:
+  #     - "80:80"
+  #     - "443:443"
+  #     - "8080:8080"
+  #     - "8082:8082"
+  #   networks:
+  #     - boilerplate_network
+  #   volumes:
+  #     - /var/run/docker.sock:/var/run/docker.sock
+  #     - /etc/letsencrypt:/letsencrypt
+  #   labels:
+  #     # Revoir la configuration
+  #     # Router pour le dashboard
+  #     - "traefik.http.routers.traefik.rule=Host(`traefik.localhost`)"
+  #     - "traefik.http.routers.traefik.entrypoints=web"
+  #     - "traefik.http.routers.traefik.middlewares=auth"
+
+  #     # Middleware pour l'authentification
+  #     - "traefik.http.middlewares.auth.basicauth.users=BoilerplateAdmin:165ff6c5d28746902ee35062051442d4"
+  #     - "traefik.http.middlewares.auth.basicauth.headerField=X-WebAuth-User"
+  #     - "traefik.http.middlewares.auth.basicauth.removeheader=true"
+
+  boilerplate_prometheus:
+    image: prom/prometheus:v2.51.2
+    ports:
+      - "9090:9090"
+    volumes:
+      - ../../etc/prometheus:/workspace
+    command:
+      - --config.file=/workspace/prometheus.yml
+      - --enable-feature=exemplar-storage
+    depends_on:
+      - boilerplate_loki
+    logging: *default-logging
+
+  boilerplate_tempo:
+    image: grafana/tempo:2.4.1
+    command: [ "--target=all", "--storage.trace.backend=local", "--storage.trace.local.path=/var/tempo", "--auth.enabled=false" ]
+    ports:
+      - "4317:4317"
+      - "4318:4318"
+    depends_on:
+      - boilerplate_loki
+    logging: *default-logging
+
+  boilerplate_grafana:
+    image: grafana/grafana:10.4.2
+    ports:
+      - "3000:3000"
+    volumes:
+      - ../../etc/grafana/:/etc/grafana/provisioning/datasources
+      - ../../etc/dashboards.yaml:/etc/grafana/provisioning/dashboards/dashboards.yaml
+      - ../../etc/dashboards:/etc/grafana/dashboards
+    depends_on:
+      - boilerplate_loki
+      - boilerplate_prometheus
+    logging: *default-logging
