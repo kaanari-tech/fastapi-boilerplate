@@ -93,45 +93,45 @@ app.endpoints    # Restapi endpoints files
 
 To correctly run the project, you will need some environment variables. Expose & import them in core/config.py
 
-`ENVIRONMENT`: Specifies the current runtime environment of the application. Possible values include dev, prod, and preprod.
-`POSTGRES_HOST`: Hostname or address of the PostgreSQL database server.
-`POSTGRES_PORT`: Port on which the PostgreSQL database server is listening (default is 5432).
-`POSTGRES_USER`: Username used to authenticate with the PostgreSQL database.
-`POSTGRES_PASSWORD`: Password for the PostgreSQL user.
-`REDIS_HOST`: Hostname or address of the Redis server.
-`REDIS_POR`: Port on which the Redis server is running (default is 6379).
-`REDIS_PASSWOR`: Password for the Redis server. If blank, no authentication is required.
-`REDIS_DATABAS`: Database index in Redis to use (default is 0).
-`OTLP_GRPC_ENDPOIN`: gRPC endpoint for sending OpenTelemetry logs and traces, typically to Tempo or similar systems.
-`TOKEN_SECRET_KE`: Secret key used for generating and verifying JWT tokens.
-`OPERA_LOG_ENCRYPT_SECRET_KE`: Encryption key used to securely encrypt log data for operations.
-`OAUTH2_GITHUB_CLIENT_I`: Client ID for GitHub OAuth2 integration.
-`OAUTH2_GITHUB_CLIENT_SECRE`: Client secret for GitHub OAuth2 integration.
-`OAUTH2_LINUX_DO_CLIENT_I`: Client ID for Linux DO OAuth2 integration.
-`OAUTH2_LINUX_DO_CLIENT_SECRE`: Client secret for Linux DO OAuth2 integration.
-`CELERY_BROKER_REDIS_DATABAS`: Redis database index for the Celery task broker.
-`CELERY_BACKEND_REDIS_DATABAS`: Redis database index for Celery task results backend.
-`RABBITMQ_HOS`: Hostname or address of the RabbitMQ message broker.
-`RABBITMQ_POR`: Port on which RabbitMQ is running (default is 5672).
-`RABBITMQ_USERNAM`: Username for authenticating with RabbitMQ.
-`RABBITMQ_PASSWOR`: Password for the RabbitMQ user.
-`MINIO_ENDPOIN`: Hostname or address for the MinIO server.
-`MINIO_POR`: Port on which MinIO is running (default is 9000).
-`MINIO_ACCESS_KE`: Access key for authenticating with the MinIO server.
-`MINIO_SECRET_KE`: Secret key for authenticating with the MinIO server.
-`MINIO_BUCKET_NAM`: Name of the MinIO bucket used for storing files.
-`MINIO_CLOUD_UR`: Cloud URL for accessing MinIO content externally.
-`SMTP_TL`: Boolean value indicating whether TLS is enabled for SMTP communication (True for enabled).
-`SMTP_POR`: Port on which the SMTP server listens for connections (default is 587 for TLS).
-`SMTP_HOS`: Hostname or address of the SMTP email server.
-`SMTP_USE`: Username for authenticating with the SMTP server (typically an email address).
-`EMAILS_FROM_EMAI`: Email address from which emails will be sent.
-`EMAILS_FROM_NAM`: Display name associated with the sender's email address.
-`SMTP_PASSWOR`: Password for the SMTP user account.
-`GOOGLE_CLIENT_I`: Client ID for Google OAuth2 integration.
-`GOOGLE_SECRET_KE`: Secret key for Google OAuth2 integration.
-`GOOGLE_WEBHOOK_OAUTH_REDIRECT_UR`: Redirect URI used during Google OAuth2 authentication flow.
-`GENAI_API_KE`: API key for accessing Generative AI services.
+- `ENVIRONMENT`: Specifies the current runtime environment of the application. Possible values include dev, prod, and preprod 
+- `POSTGRES_HOST`: Hostname or address of the PostgreSQL database server.
+- `POSTGRES_PORT`: Port on which the PostgreSQL database server is listening (default is 5432).
+- `POSTGRES_USER`: Username used to authenticate with the PostgreSQL database.
+- `POSTGRES_PASSWORD`: Password for the PostgreSQL user.
+- `REDIS_HOST`: Hostname or address of the Redis server.
+- `REDIS_POR`: Port on which the Redis server is running (default is 6379).
+- `REDIS_PASSWOR`: Password for the Redis server. If blank, no authentication is required.
+- `REDIS_DATABAS`: Database index in Redis to use (default is 0).
+- `OTLP_GRPC_ENDPOIN`: gRPC endpoint for sending OpenTelemetry logs and traces, typically to Tempo or similar systems.
+- `TOKEN_SECRET_KE`: Secret key used for generating and verifying JWT tokens.
+- `OPERA_LOG_ENCRYPT_SECRET_KE`: Encryption key used to securely encrypt log data for operations.
+- `OAUTH2_GITHUB_CLIENT_I`: Client ID for GitHub OAuth2 integration.
+- `OAUTH2_GITHUB_CLIENT_SECRE`: Client secret for GitHub OAuth2 integration.
+- `OAUTH2_LINUX_DO_CLIENT_I`: Client ID for Linux DO OAuth2 integration.
+- `OAUTH2_LINUX_DO_CLIENT_SECRE`: Client secret for Linux DO OAuth2 integration.
+- `CELERY_BROKER_REDIS_DATABAS`: Redis database index for the Celery task broker.
+- `CELERY_BACKEND_REDIS_DATABAS`: Redis database index for Celery task results backend.
+- `RABBITMQ_HOS`: Hostname or address of the RabbitMQ message broker.
+- `RABBITMQ_POR`: Port on which RabbitMQ is running (default is 5672).
+- `RABBITMQ_USERNAM`: Username for authenticating with RabbitMQ.
+- `RABBITMQ_PASSWOR`: Password for the RabbitMQ user.
+- `MINIO_ENDPOIN`: Hostname or address for the MinIO server.
+- `MINIO_POR`: Port on which MinIO is running (default is 9000).
+- `MINIO_ACCESS_KE`: Access key for authenticating with the MinIO server.
+- `MINIO_SECRET_KE`: Secret key for authenticating with the MinIO server.
+- `MINIO_BUCKET_NAM`: Name of the MinIO bucket used for storing files.
+- `MINIO_CLOUD_UR`: Cloud URL for accessing MinIO content externally.
+- `SMTP_TL`: Boolean value indicating whether TLS is enabled for SMTP communication (True for enabled).
+- `SMTP_POR`: Port on which the SMTP server listens for connections (default is 587 for TLS).
+- `SMTP_HOS`: Hostname or address of the SMTP email server.
+- `SMTP_USE`: Username for authenticating with the SMTP server (typically an email address).
+- `EMAILS_FROM_EMAI`: Email address from which emails will be sent.
+- `EMAILS_FROM_NAM`: Display name associated with the sender's email address.
+- `SMTP_PASSWOR`: Password for the SMTP user account.
+- `GOOGLE_CLIENT_I`: Client ID for Google OAuth2 integration.
+- `GOOGLE_SECRET_KE`: Secret key for Google OAuth2 integration.
+- `GOOGLE_WEBHOOK_OAUTH_REDIRECT_UR`: Redirect URI used during Google OAuth2 authentication flow.
+- `GENAI_API_KE`: API key for accessing Generative AI services.
 
 
 ## Quick run
